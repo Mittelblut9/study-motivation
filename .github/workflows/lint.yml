@@ -1,0 +1,30 @@
+name: Linter
+
+on:
+  pull_request_target:
+      branches: [dev, main]
+  push:
+      branches: ['**']
+  
+permissions:
+  contents: write
+
+jobs:
+    test-lint:
+        runs-on: ubuntu-latest
+
+        steps:
+            - uses: actions/checkout@v6
+              with:
+                ref: ${{ github.head_ref }}
+                fetch-depth: 0
+            - uses: actions/setup-node@v6
+              with:
+                node-version: 24
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v5
+            - name: Install Eslint
+              run: pnpm install
+
+            - name: Lint
+              run: pnpm run code:lint
