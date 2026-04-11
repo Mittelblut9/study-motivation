@@ -8,6 +8,13 @@
       "when": 1775912899490,
       "tag": "0000_secret_prism",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "6",
+      "when": 1775934054592,
+      "tag": "0001_smart_kid_colt",
+      "breakpoints": true
     }
   ]
 }

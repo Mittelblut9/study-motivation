@@ -11,8 +11,15 @@ export const quotes = sqliteTable('quotes', {
     text: text('text').notNull(),
 });
 
+export const users = sqliteTable('users', {
+    id: integer('id').primaryKey({ autoIncrement: true }),
+    email: text('email').notNull().unique(),
+    password: text('password').notNull(),
+});
+
 export const quotesRelations = relations(quotes, ({ many }) => ({
     moods: many(moodsToQuotesRelations),
+    users: many(usersToQuotesRelations),
 }));
 
 export const moodsToQuotesRelations = sqliteTable('moods_to_quotes_relations', {
@@ -21,4 +28,12 @@ export const moodsToQuotesRelations = sqliteTable('moods_to_quotes_relations', {
 },
 t => [
     primaryKey({ columns: [t.moodId, t.quoteId] }),
+]);
+
+export const usersToQuotesRelations = sqliteTable('users_to_quotes_relations', {
+    userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+    quoteId: integer('quote_id').notNull().references(() => quotes.id, { onDelete: 'cascade' }),
+},
+t => [
+    primaryKey({ columns: [t.userId, t.quoteId] }),
 ]);

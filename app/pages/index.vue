@@ -13,12 +13,7 @@
                 v-html="useT('homepage.subheader.noQuoteSelected')"
             />
             <div class="flex justify-center mt-20">
-                <UButton
-                    color="neutral"
-                    variant="outline"
-                    class="cursor-pointer"
-                    :label="useT('homepage.button.generate')"
-                />
+                <RollQuoteButtonAtom />
             </div>
         </div>
     </div>

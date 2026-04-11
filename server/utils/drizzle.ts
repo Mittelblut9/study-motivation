@@ -16,3 +16,4 @@ export function useDrizzle() {
 
 export type Mood = typeof schema.moods.$inferSelect;
 export type Quotes = typeof schema.quotes.$inferSelect;
+export type User = typeof schema.users.$inferSelect;

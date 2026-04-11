@@ -1,0 +1,16 @@
+login: 
+  title: "Anmelden"
+  description: "Gib deine Anmeldedaten ein, um auf dein Konto zuzugreifen."
+  fields:
+    email: 
+      label: "E-Mail"
+      placeholder: "max{'@'}mustermann.de"
+    password:
+      label: "Passwort"
+      placeholder: "Gib dein Passwort ein"
+    remember:
+      label: "Angemeldet bleiben"
+    errors:
+      required: "Dieses Feld ist erforderlich."
+      invalidEmail: "Bitte gib eine gültige E-Mail-Adresse ein."
+      passwordMinLength: "Das Passwort muss mindestens {min} Zeichen lang sein."

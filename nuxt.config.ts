@@ -1,4 +1,5 @@
 import { generateJsonTranslations } from './scripts/i18n/loadYamlTranslations';
+import { ERoutes } from './app/utils/enum/Routes.enum';
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -10,11 +11,12 @@ export default defineNuxtConfig({
         '@sentry/nuxt/module',
         '@nuxtjs/seo',
         '@nuxt/eslint',
+        'nuxt-auth-utils',
     ],
     plugins: [
         '~/plugins/sentry.ts',
     ],
-    ssr: false,
+    ssr: true,
     components: [
         {
             path: '~/components',
@@ -46,17 +48,44 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
         db: {
-            path: 'motivation.db',
+            path: 'study-motivation.db',
         },
     },
     extensions: ['ts', 'js'],
+    routeRules: {
+        [ERoutes.HOME]: {
+            appMiddleware: ['auth'],
+        }
+    },
     devServer: {
         url: 'http://127.0.0.1:3000',
     },
     future: {
         compatibilityVersion: 4,
     },
-    compatibilityDate: '2025-03-26',
+    compatibilityDate: '2026-04-11',
+    nitro: {
+        experimental: {
+            tasks: true,
+        },
+        imports: {
+            dirs: ['server/utils'],
+            presets: [
+                {
+                    from: 'h3-zod',
+                    imports: [
+                        'useValidatedQuery',
+                        'useValidatedBody',
+                        'useValidatedParams',
+                    ],
+                },
+                {
+                    from: 'consola',
+                    imports: ['consola'],
+                },
+            ],
+        }
+    },
     vite: {
         optimizeDeps: {
             include: []
@@ -80,6 +109,15 @@ export default defineNuxtConfig({
         'builder:watch': () => {
             generateJsonTranslations();
         },
+    },
+    auth: {
+        hash: {
+            scrypt: {
+                cost: 16384,
+                blockSize: 8,
+                parallelization: 1,
+            }
+        }
     },
     i18n: {
         langDir: 'locales/.generated/',

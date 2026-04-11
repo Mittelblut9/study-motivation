@@ -15,11 +15,7 @@ export default defineNuxtPlugin({
         Sentry.init({
             dsn: sentryDsn,
             environment: process.env.NODE_ENV,
-            integrations: [
-                Sentry.browserTracingIntegration(),
-            ],
-            tracesSampleRate: 0.25,
-            tracePropagationTargets: ['http://127.0.0.1:3000'],
+            integrations: [],
         });
     }
 });
