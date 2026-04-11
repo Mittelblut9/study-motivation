@@ -16,7 +16,8 @@
     "prepare": "husky",
     "sass-migrate": "sass-migrator module --migrate-deps app/assets/scss/base.scss",
     "code:format": "eslint --fix .",
-    "code:lint": "eslint ."
+    "code:lint": "eslint .",
+    "db:generate": "drizzle-kit generate"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -51,5 +52,11 @@
     "vue": "3.5.24",
     "vue-router": "5.0.3",
     "vue-tsc": "3.2.2"
+  },
+  "dependencies": {
+    "@types/better-sqlite3": "^7.6.13",
+    "better-sqlite3": "^12.8.0",
+    "drizzle-kit": "^0.31.10",
+    "drizzle-orm": "^0.45.2"
   }
 }

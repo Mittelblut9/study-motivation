@@ -42,6 +42,11 @@ export default defineNuxtConfig({
     colorMode: {
         preference: 'dark',
     },
+    runtimeConfig: {
+        db: {
+            path: 'motivation.db',
+        },
+    },
     extensions: ['ts', 'js'],
     devServer: {
         url: 'http://127.0.0.1:3000',
@@ -50,6 +55,11 @@ export default defineNuxtConfig({
         compatibilityVersion: 4,
     },
     compatibilityDate: '2025-03-26',
+    vite: {
+        optimizeDeps: {
+            include: []
+        }
+    },
     typescript: {
         typeCheck: false,
         strict: false,
