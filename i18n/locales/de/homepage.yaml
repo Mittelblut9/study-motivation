@@ -1,0 +1,7 @@
+homepage:
+    header:
+        text: "<strong>Study Motivation</strong>. Damit es <u>dir</u> besser geht."
+    subheader:
+        noQuoteSelected: "Klicke auf den Button um deinen heutigen Spruch zu generieren."
+    button:
+        generate: "Generiere einen Spruch"

@@ -1,6 +1,6 @@
 header:
     links:
-        example:
-            label: "Example"
+        admin:
+            label: "Admin"
             icon: "i-heroicons-rocket-launch"
-            to: "/"
+            to: "/admin"

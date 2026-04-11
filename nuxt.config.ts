@@ -40,7 +40,9 @@ export default defineNuxtConfig({
         '~/assets/scss/base.scss',
     ],
     colorMode: {
-        preference: 'dark',
+        preference: 'light',
+        storage: 'cookie',
+        storageKey: 'study-motivation-color-mode',
     },
     runtimeConfig: {
         db: {

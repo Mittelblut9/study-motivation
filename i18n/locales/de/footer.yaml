@@ -1,7 +1,4 @@
 footer: 
     copyright: "Copyright © {year}"
-    links:
-        example:
-            label: "Example"
-            icon: "i-heroicons-rocket-launch"
-            to: "/"
+    developedBy: "Made with <3 by "
+    codedByHumans: "<u>No</u> Vibe Coding was used for this project."
