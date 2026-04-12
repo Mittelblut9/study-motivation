@@ -1,5 +1,5 @@
 <template>
-    <UHeader>
+    <UHeader :items="links">
         <UNavigationMenu :items="links" />
         <template #left>
             <ULink
@@ -12,6 +12,13 @@
                     class="h-10 w-auto"
                 >
             </ULink>
+        </template>
+        <template #body>
+            <UNavigationMenu
+                :items="links"
+                orientation="vertical"
+                class="-mx-2.5"
+            />
         </template>
         <template #right>
             <AuthState v-slot="{ loggedIn, clear }">
