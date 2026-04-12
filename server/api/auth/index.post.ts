@@ -37,5 +37,5 @@ export default defineEventHandler(async (event) => {
             email: user.email,
         },
     });
-    setResponseStatus(event, 201);
+    return { success: true };
 });

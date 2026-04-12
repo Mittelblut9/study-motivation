@@ -50,14 +50,17 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>;
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-    $fetch('/api/auth', {
-        method: 'POST',
-        body: payload.data
-    }).then(() => {
-        navigateTo(ERoutes.HOME);
-    }).catch((err) => {
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+    try {
+        await $fetch('/api/auth', {
+            method: 'POST',
+            body: payload.data
+        });
+
+        await useUserSession().fetch();
+        await navigateTo(ERoutes.HOME, { replace: true });
+    } catch (err) {
         console.error(err);
-    });
+    }
 }
 </script>

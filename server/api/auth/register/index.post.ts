@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
                 email: newUser[0].email,
             },
         });
-        setResponseStatus(event, 201);
+        sendRedirect(event, '/auth/login');
     } catch (error) {
         captureException(error);
         consola.error('Error creating user', error);

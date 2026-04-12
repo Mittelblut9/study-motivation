@@ -2,16 +2,37 @@
     <UHeader>
         <UNavigationMenu :items="links" />
         <template #left>
-            <img
-                src="/img/Learning 7TV.png"
-                alt="Logo"
-                class="h-10 w-auto"
+            <ULink
+                :to="ERoutes.HOME"
+                prefetch
             >
+                <img
+                    src="/img/Learning 7TV.png"
+                    alt="Logo"
+                    class="h-10 w-auto"
+                >
+            </ULink>
+        </template>
+        <template #right>
+            <AuthState v-slot="{ loggedIn, clear }">
+                <button
+                    v-if="loggedIn"
+                    @click="clear"
+                >
+                    Logout
+                </button>
+                <NuxtLink
+                    v-else
+                    :to="ERoutes.LOGIN"
+                >Login</NuxtLink>
+            </AuthState>
         </template>
     </UHeader>
 </template>
 
 <script lang="ts" setup>
+import { ERoutes } from '~/utils/enum/Routes.enum';
+
 const links = [
     {
         label: useT('header.links.admin.label'),

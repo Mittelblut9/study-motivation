@@ -10,10 +10,10 @@
                 @submit="onSubmit"
             >
                 <template #description>
-                    {{ useT('login.description.text') }} <ULink
+                    {{ useT('register.description.text') }} <ULink
                         :to="ERoutes.LOGIN"
                         class="text-primary font-medium"
-                    >{{ useT('login.description.link') }}</ULink>.
+                    >{{ useT('register.description.link') }}</ULink>.
                 </template>
             </UAuthForm>
         </UPageCard>
@@ -53,14 +53,17 @@ const schema = z.object({
 
 type Schema = z.output<typeof schema>;
 
-function onSubmit(payload: FormSubmitEvent<Schema>) {
-    $fetch('/api/auth/register', {
-        method: 'POST',
-        body: payload.data
-    }).then(() => {
-        navigateTo(ERoutes.LOGIN);
-    }).catch((err) => {
+async function onSubmit(payload: FormSubmitEvent<Schema>) {
+    try {
+        await $fetch('/api/auth/register', {
+            method: 'POST',
+            body: payload.data
+        });
+
+        await useUserSession().fetch();
+        await navigateTo(ERoutes.LOGIN, { replace: true });
+    } catch (err) {
         console.error(err);
-    });
+    }
 }
 </script>
