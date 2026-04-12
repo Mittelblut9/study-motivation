@@ -15,6 +15,13 @@
       "when": 1775934054592,
       "tag": "0001_smart_kid_colt",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1775989536644,
+      "tag": "0002_neat_thunderbolt_ross",
+      "breakpoints": true
     }
   ]
 }

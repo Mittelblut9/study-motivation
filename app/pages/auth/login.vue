@@ -8,7 +8,14 @@
                 icon="i-lucide-user"
                 :fields="fields"
                 @submit="onSubmit"
-            />
+            >
+                <template #description>
+                    {{ useT('login.description.text') }} <ULink
+                        :to="ERoutes.REGISTER"
+                        class="text-primary font-medium"
+                    >{{ useT('login.description.link') }}</ULink>.
+                </template>
+            </UAuthForm>
         </UPageCard>
     </div>
 </template>
@@ -16,6 +23,7 @@
 <script lang="ts" setup>
 import * as z from 'zod';
 import type { FormSubmitEvent, AuthFormField } from '@nuxt/ui';
+import { ERoutes } from '~/utils/enum/Routes.enum';
 
 const fields: AuthFormField[] = [{
     name: 'email',
@@ -46,9 +54,8 @@ function onSubmit(payload: FormSubmitEvent<Schema>) {
     $fetch('/api/auth', {
         method: 'POST',
         body: payload.data
-    }).then((data) => {
-        console.log('Login successful:', data);
-        // navigateTo('/');
+    }).then(() => {
+        navigateTo(ERoutes.HOME);
     }).catch((err) => {
         console.error(err);
     });

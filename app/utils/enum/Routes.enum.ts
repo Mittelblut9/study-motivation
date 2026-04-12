@@ -1,4 +1,5 @@
 export enum ERoutes {
     HOME = '/',
-    LOGIN = '/login',
+    LOGIN = '/auth/login',
+    REGISTER = '/auth/register',
 }

@@ -1,18 +1,18 @@
-login: 
-  title: "Anmelden"
+register: 
+  title: "Registrieren"
   description: 
-    text: "Noch keinen Account?"
-    link: "Registrieren"
-
+    text: "Schon einen Account?"
+    link: "Anmelden"
   fields:
+    name:
+      label: "Name"
+      placeholder: "Max Mustermann"
     email: 
       label: "E-Mail"
       placeholder: "max{'@'}mustermann.de"
     password:
       label: "Passwort"
       placeholder: "Gib dein Passwort ein"
-    remember:
-      label: "Angemeldet bleiben"
     errors:
       required: "Dieses Feld ist erforderlich."
       invalidEmail: "Bitte gib eine gültige E-Mail-Adresse ein."

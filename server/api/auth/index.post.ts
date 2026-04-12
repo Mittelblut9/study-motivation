@@ -8,15 +8,6 @@ const authSchema = z.object({
 export default defineEventHandler(async (event) => {
     const body = await readValidatedBody(event, event => authSchema.parse(event));
 
-    const session = await getUserSession(event);
-    if (session.user && session.user.email === body.email) {
-        setResponseStatus(event, 200);
-        setUserSession(event, {
-            user: session.user,
-        });
-        return;
-    }
-
     const { email, password } = body;
 
     const hashedPassword = await hashPassword(password);
@@ -39,12 +30,12 @@ export default defineEventHandler(async (event) => {
         });
     }
 
-    setResponseStatus(event, 200);
-    setUserSession(event, {
+    await setUserSession(event, {
         user: {
             id: user.id,
+            name: user.name,
             email: user.email,
         },
     });
-    return;
+    setResponseStatus(event, 201);
 });

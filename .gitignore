@@ -30,3 +30,5 @@ logs
 i18n/locales/.generated/*.json
 
 ._*
+
+study-motivation.db

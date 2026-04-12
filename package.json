@@ -17,7 +17,8 @@
     "sass-migrate": "sass-migrator module --migrate-deps app/assets/scss/base.scss",
     "code:format": "eslint --fix .",
     "code:lint": "eslint .",
-    "db:generate": "drizzle-kit generate"
+    "db:generate": "drizzle-kit generate",
+    "db:migrate": "nitro task run db:migrate"
   },
   "devDependencies": {
     "@nuxt/devtools": "latest",
@@ -56,15 +57,19 @@
   },
   "dependencies": {
     "@types/better-sqlite3": "^7.6.13",
-    "better-sqlite3": "^12.8.0",
+    "better-sqlite3": "12.8.0",
     "consola": "^3.4.2",
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "h3-zod": "^0.5.3",
+    "node-gyp": "^12.2.0",
     "zod": "^4.3.6"
   },
   "onlyBuiltDependencies": [
-      "sqlite3",
-      "better-sqlite3"
-    ]
+    "sqlite3",
+    "better-sqlite3",
+    "esbuild",
+    "sharp",
+    "vue-demi"
+  ]
 }
