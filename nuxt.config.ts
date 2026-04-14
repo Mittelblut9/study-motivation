@@ -12,6 +12,7 @@ export default defineNuxtConfig({
         '@nuxtjs/seo',
         '@nuxt/eslint',
         'nuxt-auth-utils',
+        'nuxt-security',
     ],
     plugins: [
         '~/plugins/sentry.ts',
@@ -144,5 +145,14 @@ export default defineNuxtConfig({
     },
     ogImage: {
         enabled: false
+    },
+    security: {
+        rateLimiter: {
+            interval: 1000 * 20,
+            tokensPerInterval: 10,
+            whiteList: ['127.0.0.1', 'localhost'],
+        },
+        hidePoweredBy: true,
+        removeLoggers: true,
     },
 });

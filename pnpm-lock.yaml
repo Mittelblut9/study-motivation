@@ -96,6 +96,9 @@ importers:
       nuxt-auth-utils:
         specifier: 0.5.29
         version: 0.5.29(magicast@0.5.2)
+      nuxt-security:
+        specifier: 2.5.1
+        version: 2.5.1(magicast@0.5.2)(rollup@4.60.1)
       pinia:
         specifier: 3.0.4
         version: 3.0.4(typescript@6.0.2)(vue@3.5.24(typescript@6.0.2))
@@ -4499,6 +4502,10 @@ packages:
     engines: {node: '>=6.0.0'}
     hasBin: true
 
+  basic-auth@2.0.1:
+    resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
+    engines: {node: '>= 0.8'}
+
   better-sqlite3@12.8.0:
     resolution: {integrity: sha512-RxD2Vd96sQDjQr20kdP+F+dK/1OUNiVOl200vKBZY8u0vTwysfolF6Hq+3ZK2+h8My9YvZhHsF+RSGZW2VYrPQ==}
     engines: {node: 20.x || 22.x || 23.x || 24.x || 25.x}
@@ -6608,6 +6615,9 @@ packages:
       '@simplewebauthn/server':
         optional: true
 
+  nuxt-csurf@1.6.5:
+    resolution: {integrity: sha512-/DMNTON8LIVhntamKbBmAuM879B0QnuSJa7ZAkmkZe+21m+1QGcjVUxtSkizaM48NUvkuAGYOG0ncn+kqEgrzw==}
+
   nuxt-define@1.0.0:
     resolution: {integrity: sha512-CYZ2WjU+KCyCDVzjYUM4eEpMF0rkPmkpiFrybTqqQCRpUbPt2h3snswWIpFPXTi+osRCY6Og0W/XLAQgDL4FfQ==}
 
@@ -6668,6 +6678,10 @@ packages:
         optional: true
       zod:
         optional: true
+
+  nuxt-security@2.5.1:
+    resolution: {integrity: sha512-gXUhJiOqgkKkP0FHDAPOuREjoala0p6G/4TIlkti1ZafpJV8TkjjFqCNT6NuiWHxKzVYY00OIR1tbRcZuJ7LmQ==}
+    engines: {node: '>=20.0.0'}
 
   nuxt-seo-utils@8.1.7:
     resolution: {integrity: sha512-k+TfDhz5CKYjoUC1zHtJAQFzSpKUnK7BoXYM/Y8PwJp4Y69OxgSRPjjrsHcYQ94VWXOt6MZbVWOMzaTSsGUYFA==}
@@ -7981,6 +7995,9 @@ packages:
   uncrypto@0.1.3:
     resolution: {integrity: sha512-Ql87qFHB3s/De2ClA9e0gsnS6zXG27SkTiSJwjCc9MebbfapQfuPzumMIUMi38ezPZVNFcHI9sUIepeQfw8J8Q==}
 
+  uncsrf@1.2.0:
+    resolution: {integrity: sha512-EyeG1tIx1zisLuqokSXZ5LhndzaUd2WBMS+18IlBUYobJsKSUQMpLIEm6QUfY/Azmhnnz0v2QbkrT6/u2K/Y1g==}
+
   unctx@2.5.0:
     resolution: {integrity: sha512-p+Rz9x0R7X+CYDkT+Xg8/GhpcShTlU8n+cf9OtOEf7zEQsNcCZO1dPKNRDqvUTaq+P32PMMkxWHwfrxkqfqAYg==}
 
@@ -8047,6 +8064,9 @@ packages:
       '@vueuse/core':
         optional: true
 
+  unplugin-remove@1.0.3:
+    resolution: {integrity: sha512-BZMt9v8Y/Z27cY7YQv+DpcW928znjP1cqplBXOirbANiFQtM2YCdiyNAJhHCvjppT0lScNn1aDrQnXqnRp32pQ==}
+
   unplugin-utils@0.3.1:
     resolution: {integrity: sha512-5lWVjgi6vuHhJ526bI4nlCOmkCIF3nnfXkCMDeMJrtdvxTs6ZFCM8oNufGTsDbKv/tJ/xj8RpvXjRuPBZJuJog==}
     engines: {node: '>=20.19.0'}
@@ -8070,6 +8090,10 @@ packages:
     peerDependenciesMeta:
       vue-router:
         optional: true
+
+  unplugin@1.16.1:
+    resolution: {integrity: sha512-4/u/j4FrCKdi17jaxuJA0jClGxB1AvU2hw/IuayPc4ay1XGaJs/rbb4v5WKwAjNifjmXK9PIFyuPiaK8azyR9w==}
+    engines: {node: '>=14.0.0'}
 
   unplugin@2.3.11:
     resolution: {integrity: sha512-5uKD0nqiYVzlmCRs01Fhs2BdkEgBS3SAVP6ndrBsuK42iC2+JHyxM05Rm9G8+5mkmRtzMZGY8Ct5+mliZxU/Ww==}
@@ -13464,6 +13488,10 @@ snapshots:
 
   baseline-browser-mapping@2.10.16: {}
 
+  basic-auth@2.0.1:
+    dependencies:
+      safe-buffer: 5.1.2
+
   better-sqlite3@12.8.0:
     dependencies:
       bindings: 1.5.0
@@ -13792,8 +13820,7 @@ snapshots:
 
   cssesc@3.0.0: {}
 
-  cssfilter@0.0.10:
-    optional: true
+  cssfilter@0.0.10: {}
 
   cssnano-preset-default@7.0.12(postcss@8.5.9):
     dependencies:
@@ -15683,6 +15710,14 @@ snapshots:
       - bcrypt
       - magicast
 
+  nuxt-csurf@1.6.5(magicast@0.5.2):
+    dependencies:
+      '@nuxt/kit': 3.21.2(magicast@0.5.2)
+      defu: 6.1.7
+      uncsrf: 1.2.0
+    transitivePeerDependencies:
+      - magicast
+
   nuxt-define@1.0.0: {}
 
   nuxt-link-checker@5.0.8(@nuxt/schema@4.4.2)(db0@0.3.4(@libsql/client@0.17.2)(better-sqlite3@12.8.0)(drizzle-orm@0.45.2(@libsql/client@0.17.2)(@opentelemetry/api@1.9.1)(@types/better-sqlite3@7.6.13)(@types/pg@8.15.6)(better-sqlite3@12.8.0)))(ioredis@5.10.1)(magicast@0.5.2)(nuxt@4.4.2(aff75e51d1ba304887eb57a9754e04cb))(vite@7.3.2(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.99.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))(vue@3.5.24(typescript@6.0.2))(zod@4.3.6):
@@ -15846,6 +15881,20 @@ snapshots:
       - vue-router
       - yjs
       - yup
+
+  nuxt-security@2.5.1(magicast@0.5.2)(rollup@4.60.1):
+    dependencies:
+      '@nuxt/kit': 4.4.2(magicast@0.5.2)
+      basic-auth: 2.0.1
+      defu: 6.1.7
+      nuxt-csurf: 1.6.5(magicast@0.5.2)
+      pathe: 2.0.3
+      unplugin-remove: 1.0.3(rollup@4.60.1)
+      xss: 1.0.15
+    transitivePeerDependencies:
+      - magicast
+      - rollup
+      - supports-color
 
   nuxt-seo-utils@8.1.7(@nuxt/schema@4.4.2)(esbuild@0.27.7)(lightningcss@1.32.0)(magicast@0.5.2)(nuxt@4.4.2(aff75e51d1ba304887eb57a9754e04cb))(rolldown@1.0.0-rc.15)(rollup@4.60.1)(unhead@2.1.13)(vite@7.3.2(@types/node@25.5.2)(jiti@2.6.1)(lightningcss@1.32.0)(sass@1.99.0)(terser@5.46.1)(tsx@4.21.0)(yaml@2.8.3))(vue@3.5.24(typescript@6.0.2))(zod@4.3.6):
     dependencies:
@@ -17618,6 +17667,8 @@ snapshots:
 
   uncrypto@0.1.3: {}
 
+  uncsrf@1.2.0: {}
+
   unctx@2.5.0:
     dependencies:
       acorn: 8.16.0
@@ -17725,6 +17776,19 @@ snapshots:
       '@nuxt/kit': 4.4.2(magicast@0.5.2)
       '@vueuse/core': 14.2.1(vue@3.5.24(typescript@6.0.2))
 
+  unplugin-remove@1.0.3(rollup@4.60.1):
+    dependencies:
+      '@babel/core': 7.29.0
+      '@babel/generator': 7.29.1
+      '@babel/parser': 7.29.2
+      '@babel/traverse': 7.29.0
+      '@rollup/pluginutils': 5.3.0(rollup@4.60.1)
+      magic-string: 0.30.21
+      unplugin: 1.16.1
+    transitivePeerDependencies:
+      - rollup
+      - supports-color
+
   unplugin-utils@0.3.1:
     dependencies:
       pathe: 2.0.3
@@ -17769,6 +17833,11 @@ snapshots:
       vue-router: 4.6.4(vue@3.5.24(typescript@6.0.2))
     transitivePeerDependencies:
       - vue
+
+  unplugin@1.16.1:
+    dependencies:
+      acorn: 8.16.0
+      webpack-virtual-modules: 0.6.2
 
   unplugin@2.3.11:
     dependencies:
@@ -18245,7 +18314,6 @@ snapshots:
     dependencies:
       commander: 2.20.3
       cssfilter: 0.0.10
-    optional: true
 
   xtend@4.0.2: {}
 
