@@ -62,8 +62,6 @@
 </template>
 
 <script lang="ts" setup>
-import type Quote from '~~/shared/types/Quotes';
-
 const quotes = ref<Quote[]>([]);
 const updatedQuotes = ref<Quote[]>([]);
 const removedQuotes = ref<Quote[]>([]);

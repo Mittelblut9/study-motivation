@@ -1,4 +1,4 @@
-import { captureException } from '@sentry/nuxt';
+import { captureException } from '@sentry/node';
 import { z } from 'zod';
 
 const authSchema = z.object({
@@ -42,8 +42,8 @@ export default defineEventHandler(async (event) => {
         });
         sendRedirect(event, '/auth/login');
     } catch (error) {
-        captureException(error);
         consola.error('Error creating user', error);
+        captureException(error);
         throw createError({
             statusCode: 500,
             message: 'Internal server error',

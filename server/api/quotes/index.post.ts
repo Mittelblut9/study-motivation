@@ -1,4 +1,4 @@
-import { captureException } from '@sentry/nuxt';
+import { captureException } from '@sentry/node';
 import z from 'zod';
 
 const quotesSchema = z.object({

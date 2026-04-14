@@ -8,7 +8,6 @@ export default defineNuxtConfig({
         '@nuxt/ui',
         '@nuxt/image',
         '@nuxt/fonts',
-        '@sentry/nuxt/module',
         '@nuxtjs/seo',
         '@nuxt/eslint',
         'nuxt-auth-utils',
@@ -16,7 +15,7 @@ export default defineNuxtConfig({
     ],
 
     plugins: [
-        '~/plugins/sentry.ts',
+        '~/plugins/sentry.client.ts',
     ],
 
     ssr: true,
@@ -102,6 +101,9 @@ export default defineNuxtConfig({
     compatibilityDate: '2026-04-11',
 
     nitro: {
+        plugins: [
+            './plugins/sentry.ts',
+        ],
         experimental: {
             tasks: true,
         },
