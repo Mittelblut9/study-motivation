@@ -32,3 +32,5 @@ i18n/locales/.generated/*.json
 ._*
 
 study-motivation.db
+# Sentry Config File
+.env.sentry-build-plugin

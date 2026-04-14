@@ -14,23 +14,29 @@ export default defineNuxtConfig({
         'nuxt-auth-utils',
         'nuxt-security',
     ],
+
     plugins: [
         '~/plugins/sentry.ts',
     ],
+
     ssr: true,
+
     components: [
         {
             path: '~/components',
             pathPrefix: false,
         },
     ],
+
     imports: {
         dirs: [
             'composables/**',
             'utils/**',
         ]
     },
+
     devtools: { enabled: true },
+
     app: {
         head: {
             charset: 'utf-8',
@@ -38,24 +44,32 @@ export default defineNuxtConfig({
             title: 'Nuxt 3 Template',
         },
     },
+
     css: [
         '~/assets/css/main.css',
         '~/assets/scss/base.scss',
     ],
+
     colorMode: {
         preference: 'light',
         storage: 'cookie',
         storageKey: 'study-motivation-color-mode',
     },
+
     runtimeConfig: {
         db: {
             path: 'study-motivation.db',
         },
         session: {
             maxAge: 60 * 60 * 24 * 31,
+        },
+        sentry: {
+            dsn: process.env.SENTRY_DSN,
         }
     },
+
     extensions: ['ts', 'js'],
+
     routeRules: {
         [ERoutes.HOME]: {
             appMiddleware: ['auth'],
@@ -64,13 +78,21 @@ export default defineNuxtConfig({
             appMiddleware: ['auth'],
         }
     },
+
+    sourcemap: {
+        client: 'hidden',
+    },
+
     devServer: {
         url: 'http://127.0.0.1:3000',
     },
+
     future: {
         compatibilityVersion: 4,
     },
+
     compatibilityDate: '2026-04-11',
+
     nitro: {
         experimental: {
             tasks: true,
@@ -93,11 +115,13 @@ export default defineNuxtConfig({
             ],
         }
     },
+
     vite: {
         optimizeDeps: {
             include: []
         }
     },
+
     typescript: {
         typeCheck: false,
         strict: false,
@@ -106,6 +130,7 @@ export default defineNuxtConfig({
         },
         shim: true,
     },
+
     hooks: {
         'build:before': () => {
             generateJsonTranslations();
@@ -117,6 +142,7 @@ export default defineNuxtConfig({
             generateJsonTranslations();
         },
     },
+
     auth: {
         hash: {
             scrypt: {
@@ -126,6 +152,7 @@ export default defineNuxtConfig({
             }
         }
     },
+
     i18n: {
         langDir: 'locales/.generated/',
         strategy: 'no_prefix',
@@ -143,9 +170,11 @@ export default defineNuxtConfig({
             strictMessage: false
         }
     },
+
     ogImage: {
         enabled: false
     },
+
     security: {
         rateLimiter: {
             interval: 1000 * 20,
@@ -154,5 +183,10 @@ export default defineNuxtConfig({
         },
         hidePoweredBy: true,
         removeLoggers: true,
+    },
+
+    sentry: {
+        org: 'blackdayz',
+        project: 'study-page',
     },
 });
