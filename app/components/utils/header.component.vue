@@ -1,6 +1,10 @@
 <template>
     <UHeader :items="links">
-        <UNavigationMenu :items="links" />
+        <UNavigationMenu
+            :items="links"
+            color="neutral"
+            highlight
+        />
         <template #left>
             <ULink
                 :to="ERoutes.HOME"
@@ -17,16 +21,24 @@
             <UNavigationMenu
                 :items="links"
                 orientation="vertical"
+                color="neutral"
                 class="-mx-2.5"
             />
         </template>
         <template #right>
-            <AuthState v-slot="{ loggedIn, clear }">
+            <AuthState v-slot="{ loggedIn, clear, user }">
+                <span
+                    v-if="loggedIn"
+                    v-html="useT('header.authState.loggedInAs', {
+                        name: user.name,
+                    })"
+                />
                 <button
                     v-if="loggedIn"
+                    class="cursor-pointer"
                     @click="clear"
                 >
-                    Logout
+                    <span v-html="useT('header.authState.logout')" />
                 </button>
                 <NuxtLink
                     v-else

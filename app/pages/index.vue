@@ -12,8 +12,14 @@
                 class="text-center max-w-2xl text-2xl"
                 v-html="useT('homepage.subheader.noQuoteSelected')"
             />
+            <blockquote
+                v-else
+                class="text-center max-w-2xl text-2xl italic"
+            >
+                {{ quote }}
+            </blockquote>
             <div class="flex justify-center mt-20">
-                <RollQuoteButtonAtom />
+                <RollQuoteButtonAtom @quote-generated="quote = $event" />
             </div>
         </div>
     </div>

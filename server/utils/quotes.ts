@@ -1,3 +1,5 @@
+import type Quote from '~~/shared/types/Quotes';
+
 export const cachedQuotes = defineCachedFunction(
     async (userId: number) =>
         await useDrizzle().select().from(tables.usersToQuotesRelations).where(eq(tables.usersToQuotesRelations.userId, userId)).innerJoin(tables.quotes, eq(tables.usersToQuotesRelations.quoteId, tables.quotes.id)),
@@ -9,4 +11,9 @@ export const cachedQuotes = defineCachedFunction(
 
 export async function invalidateQuotesCache() {
     await useStorage('cache').removeItem('nitro:functions:quotes:.json');
+}
+
+export function getRandomQuote(quotes: { userId: number; quoteId: number }[]) {
+    const randomIndex = Math.floor(Math.random() * quotes.length);
+    return quotes[randomIndex];
 }

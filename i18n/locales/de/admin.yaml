@@ -1,0 +1,19 @@
+admin: 
+  quotes: 
+    textarea:
+      placeholder: "Dein neuer Spruch"
+      aria-label: "Gib hier deinen neuen Spruch ein"
+      remove:
+        aria-label: "Entferne diesen Spruch"
+    addButton:
+      label: "Neuen Spruch hinzufügen"
+      aria-label: "Füge einen neuen Spruch hinzu"
+    saveButton:
+      label: "Änderungen speichern"
+      aria-label: "Speichere alle Änderungen an den Sprüchen"
+    success:
+      saved: "Sprüche erfolgreich gespeichert!"
+    errors:  
+      noChanges: "Keine Änderungen zum Speichern."
+      fetchFailed: "Fehler beim Laden der Sprüche. Bitte versuche es erneut."
+      saveFailed: "Fehler beim Speichern der Sprüche. Bitte versuche es erneut."

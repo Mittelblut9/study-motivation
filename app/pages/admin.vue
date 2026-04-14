@@ -19,6 +19,7 @@
                         :ui="{
                             base: 'w-97',
                         }"
+                        :placeholder="useT('admin.quotes.textarea.placeholder')"
                         autoresize
                     >
                         <template
@@ -29,7 +30,7 @@
                                 variant="link"
                                 size="sm"
                                 icon="i-lucide-circle-x"
-                                aria-label="Remove quote"
+                                :aria-label="useT('admin.quotes.textarea.remove.aria-label')"
                                 @click="removeQuote(value)"
                             />
                         </template>
@@ -39,7 +40,7 @@
                     <UButton
                         color="neutral"
                         :icon="'i-lucide-plus'"
-                        aria-label="Add quote"
+                        :aria-label="useT('admin.quotes.addButton.aria-label')"
                         @click="addQuote"
                     />
                 </div>
@@ -49,7 +50,9 @@
                 >
                     <UButton
                         color="neutral"
-                        label="Save Quotes"
+                        :label="useT('admin.quotes.saveButton.label')"
+                        :aria-label="useT('admin.quotes.saveButton.aria-label')"
+                        :loading="saveLoading"
                         @click="saveQuotes"
                     />
                 </div>
@@ -69,13 +72,17 @@ const newQuotes = ref<Quote[]>([]);
 const newQuote = { id: 0, text: '' };
 
 const loading = ref(true);
+const saveLoading = ref(false);
 
 onMounted(async () => {
     try {
         const response = await $fetch('/api/quotes');
         quotes.value.push(...response);
-    } catch (err) {
-        console.error('Failed to fetch quotes:', err);
+    } catch (_err) {
+        useToast().add({
+            description: useT('admin.quotes.errors.fetchFailed'),
+            color: 'error',
+        });
     } finally {
         loading.value = false;
     }
@@ -95,11 +102,12 @@ function removeQuote(quote: Quote) {
 function saveQuotes() {
     if (newQuotes.value.length === 0 && removedQuotes.value.length === 0 && updatedQuotes.value.length === 0) {
         useToast().add({
-            description: 'No changes to save.',
+            description: useT('admin.quotes.errors.noChanges'),
             color: 'neutral',
         });
         return;
     }
+    saveLoading.value = true;
 
     $fetch('/api/quotes', {
         method: 'POST',
@@ -110,16 +118,16 @@ function saveQuotes() {
         },
     }).then(() => {
         useToast().add({
-            description: 'Quotes saved successfully!',
+            description: useT('admin.quotes.success.saved'),
             color: 'neutral',
         });
-    }).catch((err) => {
-        console.error('Failed to save quotes:', err);
+    }).catch(() => {
         useToast().add({
-            description: 'Failed to save quotes. Please try again.',
+            description: useT('admin.quotes.errors.saveFailed'),
             color: 'error',
         });
     }).finally(() => {
+        saveLoading.value = false;
         newQuotes.value = [];
         removedQuotes.value = [];
         updatedQuotes.value = [];
