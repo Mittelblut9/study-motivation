@@ -41,7 +41,7 @@ export default defineNuxtConfig({
         head: {
             charset: 'utf-8',
             viewport: 'width=device-width, initial-scale=1',
-            title: 'Nuxt 3 Template',
+            title: 'Study Motivation',
         },
     },
 
@@ -49,6 +49,12 @@ export default defineNuxtConfig({
         '~/assets/css/main.css',
         '~/assets/scss/base.scss',
     ],
+
+    site: {
+        name: 'Study Motivation',
+        indexable: true,
+        url: 'https://study.blackdayz.de'
+    },
 
     colorMode: {
         preference: 'light',
@@ -188,5 +194,8 @@ export default defineNuxtConfig({
     sentry: {
         org: 'blackdayz',
         project: 'study-page',
+    },
+    sitemap: {
+        include: ['/', '/auth/login', '/auth/register'],
     },
 });
