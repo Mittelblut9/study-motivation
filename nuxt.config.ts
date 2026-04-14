@@ -69,8 +69,10 @@ export default defineNuxtConfig({
         session: {
             maxAge: 60 * 60 * 24 * 31,
         },
-        sentry: {
-            dsn: process.env.SENTRY_DSN,
+        public: {
+            sentry: {
+                dsn: process.env.SENTRY_DSN,
+            }
         }
     },
 
