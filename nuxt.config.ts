@@ -50,10 +50,16 @@ export default defineNuxtConfig({
         db: {
             path: 'study-motivation.db',
         },
+        session: {
+            maxAge: 60 * 60 * 24 * 31,
+        }
     },
     extensions: ['ts', 'js'],
     routeRules: {
         [ERoutes.HOME]: {
+            appMiddleware: ['auth'],
+        },
+        [ERoutes.ADMIN]: {
             appMiddleware: ['auth'],
         }
     },
