@@ -63,7 +63,6 @@
     "drizzle-kit": "^0.31.10",
     "drizzle-orm": "^0.45.2",
     "h3-zod": "^0.5.3",
-    "import-in-the-middle": "^3.0.1",
     "node-gyp": "^12.2.0",
     "zod": "^4.3.6"
   },

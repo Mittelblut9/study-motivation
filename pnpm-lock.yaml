@@ -29,9 +29,6 @@ importers:
       h3-zod:
         specifier: ^0.5.3
         version: 0.5.3(h3@2.0.1-rc.20(crossws@0.4.4(srvx@0.11.15)))(zod@4.3.6)
-      import-in-the-middle:
-        specifier: ^3.0.1
-        version: 3.0.1
       node-gyp:
         specifier: ^12.2.0
         version: 12.2.0
