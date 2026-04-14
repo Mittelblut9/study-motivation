@@ -38,6 +38,7 @@ export default defineEventHandler(async (event) => {
                 name: newUser[0].name,
                 email: newUser[0].email,
             },
+            loggedInAt: new Date(),
         });
         sendRedirect(event, '/auth/login');
     } catch (error) {

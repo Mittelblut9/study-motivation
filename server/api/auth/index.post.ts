@@ -36,6 +36,7 @@ export default defineEventHandler(async (event) => {
             name: user.name,
             email: user.email,
         },
+        loggedInAt: new Date(),
     });
     return { success: true };
 });
