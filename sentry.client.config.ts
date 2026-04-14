@@ -1,5 +1,5 @@
 import * as Sentry from '@sentry/nuxt';
-import { useRuntimeConfig } from 'nuxt/dist/app/nuxt';
+import { useRuntimeConfig } from 'nuxt/app';
 
 Sentry.init({
     dsn: useRuntimeConfig().public.sentry.dsn || '',
