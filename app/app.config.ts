@@ -21,6 +21,11 @@ export default defineAppConfig({
                 linkLabel: 'text-black',
                 linkLeadingIcon: 'text-black!',
             }
+        },
+        inputTags: {
+            slots: {
+                root: 'w-[400px]',
+            }
         }
     }
 });

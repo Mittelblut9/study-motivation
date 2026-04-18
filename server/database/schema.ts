@@ -38,3 +38,11 @@ export const usersToQuotesRelations = sqliteTable('users_to_quotes_relations', {
 t => [
     primaryKey({ columns: [t.userId, t.quoteId] }),
 ]);
+
+export const usersToMoodsRelations = sqliteTable('users_to_moods_relations', {
+    userId: integer('user_id').notNull().references(() => users.id, { onDelete: 'cascade' }),
+    moodId: integer('mood_id').notNull().references(() => moods.id, { onDelete: 'cascade' }),
+},
+t => [
+    primaryKey({ columns: [t.userId, t.moodId] }),
+]);

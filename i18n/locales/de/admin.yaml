@@ -9,7 +9,7 @@ admin:
       label: "Neuen Spruch hinzufügen"
       aria-label: "Füge einen neuen Spruch hinzu"
     saveButton:
-      label: "Änderungen speichern"
+      label: "Sprüche speichern"
       aria-label: "Speichere alle Änderungen an den Sprüchen"
     success:
       saved: "Sprüche erfolgreich gespeichert!"
@@ -17,3 +17,16 @@ admin:
       noChanges: "Keine Änderungen zum Speichern."
       fetchFailed: "Fehler beim Laden der Sprüche. Bitte versuche es erneut."
       saveFailed: "Fehler beim Speichern der Sprüche. Bitte versuche es erneut."
+      validationFailed: "Ungültige Eingabe. Bitte überprüfe deine Eingabe und versuche es erneut."
+  moods: 
+    input: 
+      placeholder: "Deine neue Stimmung"
+      aria-label: "Gib hier deine neue Stimmung ein"
+    success:
+      saved: "Stimmungen erfolgreich gespeichert!"
+    saveButton:
+      label: "Stimmungen speichern"
+      aria-label: "Speichere alle Änderungen an den Stimmungen"
+    errors: 
+      saveFailed: "Fehler beim Speichern der Stimmungen. Bitte versuche es erneut."
+      validationFailed: "Ungültige Eingabe. Bitte überprüfe deine Eingabe und versuche es erneut."
