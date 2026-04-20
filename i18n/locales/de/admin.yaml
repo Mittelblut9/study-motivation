@@ -2,6 +2,8 @@ admin:
   quotes:
     header:
       label: "Sprüche verwalten"
+    empty:
+      message: "Es ist so leer hier :/ Füge mit dem Plus-Button deinen ersten Spruch hinzu!"
     textarea:
       placeholder: "Dein neuer Spruch"
       aria-label: "Gib hier deinen neuen Spruch ein"
@@ -26,10 +28,10 @@ admin:
       placeholder: "Deine neue Stimmung"
       aria-label: "Gib hier deine neue Stimmung ein"
     success:
-      saved: "Stimmungen erfolgreich gespeichert!"
+      saved: "Stimmung erfolgreich gespeichert!"
     saveButton:
-      label: "Stimmungen speichern"
-      aria-label: "Speichere alle Änderungen an den Stimmungen"
+      label: "Stimmung speichern"
+      aria-label: "Speichere alle Änderungen an der Stimmung"
     errors: 
-      saveFailed: "Fehler beim Speichern der Stimmungen. Bitte versuche es erneut."
+      saveFailed: "Fehler beim Speichern der Stimmung. Bitte versuche es erneut."
       validationFailed: "Ungültige Eingabe. Bitte überprüfe deine Eingabe und versuche es erneut."

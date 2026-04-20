@@ -1,5 +1,11 @@
 <template>
     <div class="grid gap-4">
+        <div v-if="quotes.length === 0">
+            <p
+                class="italic text-sm text-neutral-500"
+                v-html="useT('admin.quotes.empty.message')"
+            />
+        </div>
         <div
             v-for="value in quotes"
             :key="value.id"
@@ -9,10 +15,11 @@
                 color="neutral"
                 variant="outline"
                 :ui="{
-                    base: 'w-97',
+                    base: 'w-97 ms-3',
                 }"
                 :placeholder="useT('admin.quotes.textarea.placeholder')"
                 autoresize
+                @update:model-value="updateQuote(value)"
             >
                 <template
                     #trailing
@@ -99,6 +106,15 @@ function addQuote() {
 function removeQuote(quote: Quote) {
     quotes.value = quotes.value.filter(q => q.id !== quote.id);
     removedQuotes.value.push(quote);
+}
+
+function updateQuote(quote: Quote) {
+    const existingIndex = updatedQuotes.value.findIndex(q => q.id === quote.id);
+    if (existingIndex !== -1) {
+        updatedQuotes.value[existingIndex] = quote;
+    } else {
+        updatedQuotes.value.push(quote);
+    }
 }
 
 function saveQuotes() {
