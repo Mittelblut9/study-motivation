@@ -15,7 +15,7 @@
                 color="neutral"
                 variant="outline"
                 :ui="{
-                    base: 'w-97 ms-3',
+                    base: ':w-97 ms-3',
                 }"
                 :placeholder="useT('admin.quotes.textarea.placeholder')"
                 autoresize
@@ -44,10 +44,7 @@
             @click="addQuote"
         />
     </div>
-    <div
-        v-if="quotes.length > 0"
-        class="flex justify-center"
-    >
+    <div class="flex justify-center">
         <UButton
             color="neutral"
             :label="useT('admin.quotes.saveButton.label')"
@@ -82,12 +79,22 @@ const { saveLoading, mood } = defineProps<{
 
 onMounted(async () => {
     try {
-        const response = await $fetch('/api/quotes', {
+        const { data, refresh } = await useFetch<Quote[]>('/api/quotes', {
             method: 'GET',
             query: { moodId: mood.id },
+            getCachedData: (key, nuxtApp) => {
+                return nuxtApp.payload.data[key] ?? nuxtApp.static.data[key];
+            },
         });
-        quotes.value.push(...response);
-    } catch (_err) {
+
+        if (!data.value) {
+            console.warn('No cached data found for quotes, fetching from API...');
+            await refresh();
+        } else {
+            quotes.value.push(...data.value);
+        }
+    } catch (err) {
+        console.error('Failed to fetch quotes:', err);
         useToast().add({
             description: useT('admin.quotes.errors.fetchFailed'),
             color: 'error',
@@ -130,7 +137,7 @@ function saveQuotes() {
     try {
         quotesSchema.parse(quotes.value);
     } catch (err) {
-        consola.error('Validation failed:', err);
+        console.error('Validation failed:', err);
         useToast().add({
             description: useT('admin.quotes.errors.validationFailed'),
             color: 'error',

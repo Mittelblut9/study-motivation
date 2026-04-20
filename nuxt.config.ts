@@ -18,7 +18,7 @@ export default defineNuxtConfig({
         '~/plugins/sentry.client.ts',
     ],
 
-    ssr: true,
+    ssr: false,
 
     components: [
         {

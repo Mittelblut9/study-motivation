@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
         });
         sendRedirect(event, '/auth/login');
     } catch (error) {
-        consola.error('Error creating user', error);
+        console.error('Error creating user', error);
         captureException(error);
         throw createError({
             statusCode: 500,

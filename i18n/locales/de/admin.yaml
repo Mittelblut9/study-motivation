@@ -10,7 +10,6 @@ admin:
       remove:
         aria-label: "Entferne diesen Spruch"
     addButton:
-      label: "Neuen Spruch hinzufügen"
       aria-label: "Füge einen neuen Spruch hinzu"
     saveButton:
       label: "Sprüche speichern"
@@ -29,6 +28,9 @@ admin:
       aria-label: "Gib hier deine neue Stimmung ein"
     success:
       saved: "Stimmung erfolgreich gespeichert!"
+    addButton:
+      label: "Neue Stimmung hinzufügen"
+      aria-label: "Füge eine neue Stimmung hinzu"
     saveButton:
       label: "Stimmung speichern"
       aria-label: "Speichere alle Änderungen an der Stimmung"

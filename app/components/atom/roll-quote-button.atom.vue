@@ -1,7 +1,7 @@
 <template>
     <div
         v-if="!pageLoading"
-        class="grid gap-3"
+        class="grid gap-3 min-w-lg max-w-xl mx-auto"
     >
         <UTabs
             v-model="selectedMood"
@@ -18,6 +18,11 @@
             :loading="loading"
             @click="getNewQuote"
         />
+        <p
+            v-if="customError"
+            class="text-red-500"
+            v-html="customError"
+        />
     </div>
     <div v-else>
         <LoadingAtom />
@@ -30,6 +35,7 @@ import { captureException } from '@sentry/browser';
 
 const loading = ref(false);
 const pageLoading = ref(true);
+const customError = ref<string | null>(null);
 
 const emit = defineEmits<{
     quoteGenerated: [quote: string];
@@ -48,7 +54,7 @@ onMounted(() => {
         console.error('Error loading moods:', error.value);
         captureException(error.value);
         useToast().add({
-            title: useT('homepage.error.moodsLoadFailed'),
+            title: useT('homepage.errors.moodsLoadFailed'),
             color: 'error',
         });
         return;
@@ -56,6 +62,7 @@ onMounted(() => {
 
     if (!data.value) {
         console.error('Failed to load moods:', error.value);
+        customError.value = useT('homepage.errors.moodsLoadFailed');
         return;
     }
 
@@ -78,10 +85,11 @@ function getNewQuote() {
         },
         method: 'GET',
     }).then((data) => {
-        console.log('Received quote:', data);
+        customError.value = null;
         emit('quoteGenerated', data.text);
     }).catch((error) => {
         console.error('Error fetching quote:', error);
+        customError.value = useT('homepage.errors.quoteLoadFailed');
     }).finally(() => {
         loading.value = false;
     });

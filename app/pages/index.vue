@@ -2,7 +2,7 @@
     <div>
         <div class="flex justify-center">
             <h1
-                class="text-5xl mt-10"
+                class="text-5xl mt-10 max-w-2xl text-center"
                 v-html="useT('homepage.header.text')"
             />
         </div>

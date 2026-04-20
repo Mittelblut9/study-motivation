@@ -29,7 +29,8 @@ export default defineAppConfig({
         },
         accordion: {
             slots: {
-                root: 'w-[400px]'
+                root: 'w-screen md:w-[440px]',
+                item: 'cursor-pointer border-2 border-black px-3 w-full border-b-0 last:border-b-2',
             }
         }
     }

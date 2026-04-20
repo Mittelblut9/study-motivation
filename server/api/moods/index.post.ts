@@ -3,7 +3,12 @@ import { inArray } from 'drizzle-orm/sql/expressions/conditions';
 import z from 'zod';
 
 const moodsSchema = z.object({
-    moods: z.array(z.string().min(1)),
+    moods: z.array(
+        z.object({
+            id: z.number(),
+            name: z.string().min(1),
+        }),
+    ),
 });
 
 export default defineEventHandler(async (event) => {
@@ -26,12 +31,12 @@ export default defineEventHandler(async (event) => {
 
             const existingMoodsMap = new Map(moodsInDatabase.map(mood => [mood.id, mood]));
 
-            const moodsToAdd = newMoods.filter(mood => ![...existingMoodsMap.values()].some(existingMood => existingMood.name === mood));
-            const moodsToRemove = [...existingMoodsMap.values()].filter(existingMood => !newMoods.includes(existingMood.name));
+            const moodsToAdd = newMoods.filter(mood => ![...existingMoodsMap.values()].some(existingMood => existingMood.name === mood.name));
+            const moodsToRemove = [...existingMoodsMap.values()].filter(existingMood => !newMoods.some(mood => mood.name === existingMood.name));
 
-            for (const moodName of moodsToAdd) {
+            for (const mood of moodsToAdd) {
                 const newMood = tx.insert(tables.moods).values({
-                    name: moodName,
+                    name: mood.name,
                 }).returning().get();
                 tx.insert(tables.usersToMoodsRelations).values({
                     userId,
