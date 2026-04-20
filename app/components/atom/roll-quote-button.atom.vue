@@ -60,7 +60,7 @@ onMounted(() => {
         return;
     }
 
-    if (!data.value) {
+    if (!data.value || data.value.length === 0) {
         console.error('Failed to load moods:', error.value);
         customError.value = useT('homepage.errors.moodsLoadFailed');
         return;
