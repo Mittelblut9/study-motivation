@@ -11,7 +11,7 @@ export async function invalidateQuotesCache() {
     await useStorage('cache').removeItem('nitro:functions:quotes:.json');
 }
 
-export function getRandomQuote(quotes: { userId: number; quoteId: number }[]) {
+export function getRandomQuote(quotes: { moodId: number; quoteId: number }[]) {
     const randomIndex = Math.floor(Math.random() * quotes.length);
     return quotes[randomIndex];
 }

@@ -1,31 +1,33 @@
 <template>
-    <div
-        v-for="value in quotes"
-        :key="value.id"
-    >
-        <UTextarea
-            v-model="value.text"
-            color="neutral"
-            variant="outline"
-            :ui="{
-                base: 'w-97',
-            }"
-            :placeholder="useT('admin.quotes.textarea.placeholder')"
-            autoresize
+    <div class="grid gap-4">
+        <div
+            v-for="value in quotes"
+            :key="value.id"
         >
-            <template
-                #trailing
+            <UTextarea
+                v-model="value.text"
+                color="neutral"
+                variant="outline"
+                :ui="{
+                    base: 'w-97',
+                }"
+                :placeholder="useT('admin.quotes.textarea.placeholder')"
+                autoresize
             >
-                <UButton
-                    color="neutral"
-                    variant="link"
-                    size="sm"
-                    icon="i-lucide-circle-x"
-                    :aria-label="useT('admin.quotes.textarea.remove.aria-label')"
-                    @click="removeQuote(value)"
-                />
-            </template>
-        </UTextarea>
+                <template
+                    #trailing
+                >
+                    <UButton
+                        color="neutral"
+                        variant="link"
+                        size="sm"
+                        icon="i-lucide-circle-x"
+                        :aria-label="useT('admin.quotes.textarea.remove.aria-label')"
+                        @click="removeQuote(value)"
+                    />
+                </template>
+            </UTextarea>
+        </div>
     </div>
     <div class="flex justify-center">
         <UButton
@@ -66,13 +68,17 @@ const emit = defineEmits<{
     (event: 'update-component-ready' | 'update-save-loading', value: boolean): void;
 }>();
 
-const { saveLoading } = defineProps<{
+const { saveLoading, mood } = defineProps<{
     saveLoading: boolean;
+    mood: Moods;
 }>();
 
 onMounted(async () => {
     try {
-        const response = await $fetch('/api/quotes');
+        const response = await $fetch('/api/quotes', {
+            method: 'GET',
+            query: { moodId: mood.id },
+        });
         quotes.value.push(...response);
     } catch (_err) {
         useToast().add({
@@ -120,6 +126,7 @@ function saveQuotes() {
     $fetch('/api/quotes', {
         method: 'POST',
         body: {
+            moodId: mood.id,
             newQuotes: newQuotes.value,
             removedQuotes: removedQuotes.value,
             updatedQuotes: updatedQuotes.value,

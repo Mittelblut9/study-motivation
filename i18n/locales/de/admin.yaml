@@ -1,5 +1,7 @@
 admin: 
-  quotes: 
+  quotes:
+    header:
+      label: "Sprüche verwalten"
     textarea:
       placeholder: "Dein neuer Spruch"
       aria-label: "Gib hier deinen neuen Spruch ein"
@@ -20,6 +22,7 @@ admin:
       validationFailed: "Ungültige Eingabe. Bitte überprüfe deine Eingabe und versuche es erneut."
   moods: 
     input: 
+      label: "Beschreibung der Stimmung"
       placeholder: "Deine neue Stimmung"
       aria-label: "Gib hier deine neue Stimmung ein"
     success:

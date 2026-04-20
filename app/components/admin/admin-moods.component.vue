@@ -1,41 +1,62 @@
 <template>
-    <UForm
-        class="grid gap-4"
-        :state="state"
-        :schema="moodsSchema"
-        @submit.prevent="saveMoods"
+    <UAccordion
+        :items="state.moods.map((mood, i) => ({
+            label: mood.name,
+            value: String(i),
+        }))"
     >
-        <UFormField>
-            <UInputTags
-                v-model="state.moods"
-                name="moods"
-                color="neutral"
-                :placeholder="useT('admin.moods.input.placeholder')"
-                :aria-label="useT('admin.moods.input.aria-label')"
-                variant="outline"
-            />
-        </UFormField>
-        <UButton
-            color="neutral"
-            :label="useT('admin.moods.saveButton.label')"
-            :aria-label="useT('admin.moods.saveButton.aria-label')"
-            :loading="saveLoading"
-            type="submit"
-        />
-    </UForm>
+        <template #content="{ item }">
+            <UForm
+                class="grid gap-4"
+                :state="state.moods[Number(item.value)]"
+                :schema="moodQuotesSchema"
+                @submit.prevent="saveMoods"
+            >
+                <UFormField :label="useT('admin.moods.input.label')">
+                    <UInput
+                        v-model="state.moods[Number(item.value)].name"
+                        color="neutral"
+                        variant="outline"
+                        :ui="{
+                            base: 'w-97',
+                        }"
+                        :placeholder="useT('admin.moods.input.placeholder')"
+                    />
+                    <USeparator
+                        class="my-4"
+                    />
+                    <UFormField :label="useT('admin.quotes.header.label')">
+                        <slot
+                            name="quotes"
+                            :mood="state.moods[Number(item.value)]"
+                        />
+                    </UFormField>
+                </UFormField>
+                <UButton
+                    color="neutral"
+                    :label="useT('admin.moods.saveButton.label')"
+                    :aria-label="useT('admin.moods.saveButton.aria-label')"
+                    :loading="saveLoading"
+                    type="submit"
+                />
+            </UForm>
+        </template>
+    </UAccordion>
 </template>
 
 <script lang="ts" setup>
 import { captureException } from '@sentry/browser';
 import z from 'zod';
 
-const moodsSchema = z.object({
+const moodQuotesSchema = z.object({
+    name: z.string().min(1, { message: 'Mood name cannot be empty' }),
     moods: z.array(
         z.string().min(1, { message: 'Mood cannot be empty' })
     ).min(1, { message: 'At least one mood is required' }),
 });
 const state = reactive({
-    moods: [] as string[],
+    name: '',
+    moods: [] as Moods[],
 });
 
 const emit = defineEmits<{

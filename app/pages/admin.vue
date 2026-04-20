@@ -6,24 +6,21 @@
             </div>
             <div
                 v-show="!loading"
-                class="grid gap-4"
-            >
-                <AdminQuotesComponent
-                    :save-loading="saveLoading"
-                    @update-component-ready="componentsReady.quotes = true"
-                    @update-save-loading="saveLoading = $event"
-                />
-            </div>
-            <div
-                v-show="!loading"
                 class="grid gap-5"
             >
-                <USeparator />
                 <AdminMoodsComponent
                     :save-loading="saveLoading"
-                    @update-component-ready="componentsReady.moods = true"
+                    @update-component-ready="loading = false"
                     @update-save-loading="saveLoading = $event"
-                />
+                >
+                    <template #quotes="{ mood }">
+                        <AdminQuotesComponent
+                            :mood="mood"
+                            :save-loading="saveLoading"
+                            @update-save-loading="saveLoading = $event"
+                        />
+                    </template>
+                </AdminMoodsComponent>
             </div>
         </div>
     </div>
@@ -32,17 +29,4 @@
 <script lang="ts" setup>
 const loading = ref(true);
 const saveLoading = ref(false);
-
-const componentsReady = ref({
-    quotes: false,
-    moods: false,
-});
-
-watch(
-    () => componentsReady.value,
-    (newVal) => {
-        loading.value = !(newVal.quotes && newVal.moods);
-    },
-    { deep: true }
-);
 </script>

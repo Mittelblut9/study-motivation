@@ -7,6 +7,7 @@ const quotesSchema = z.object({
 });
 
 const quotesPayloadSchema = z.object({
+    moodId: z.number().min(1),
     newQuotes: z.array(quotesSchema),
     removedQuotes: z.array(quotesSchema),
     updatedQuotes: z.array(quotesSchema),
@@ -24,6 +25,7 @@ export default defineEventHandler(async (event) => {
     }
 
     const quotes = body;
+
     const userId = user.user.id;
     try {
         useDrizzle().transaction((tx) => {
@@ -33,6 +35,10 @@ export default defineEventHandler(async (event) => {
                 }).returning().get();
                 tx.insert(tables.usersToQuotesRelations).values({
                     userId,
+                    quoteId: newQuote.id,
+                }).run();
+                tx.insert(tables.moodsToQuotesRelations).values({
+                    moodId: quotes.moodId,
                     quoteId: newQuote.id,
                 }).run();
             }
@@ -45,6 +51,8 @@ export default defineEventHandler(async (event) => {
 
             for (const quote of quotes.removedQuotes) {
                 tx.delete(tables.quotes).where(eq(tables.quotes.id, quote.id)).run();
+                tx.delete(tables.usersToQuotesRelations).where(eq(tables.usersToQuotesRelations.quoteId, quote.id)).run();
+                tx.delete(tables.moodsToQuotesRelations).where(eq(tables.moodsToQuotesRelations.quoteId, quote.id)).run();
             }
         });
 

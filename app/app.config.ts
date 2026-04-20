@@ -22,9 +22,14 @@ export default defineAppConfig({
                 linkLeadingIcon: 'text-black!',
             }
         },
-        inputTags: {
+        tabs: {
             slots: {
-                root: 'w-[400px]',
+                trigger: 'cursor-pointer'
+            }
+        },
+        accordion: {
+            slots: {
+                root: 'w-[400px]'
             }
         }
     }

@@ -188,7 +188,7 @@ export default defineNuxtConfig({
     security: {
         rateLimiter: {
             interval: 1000 * 20,
-            tokensPerInterval: 10,
+            tokensPerInterval: 20,
             whiteList: ['127.0.0.1', 'localhost'],
         },
         hidePoweredBy: true,

@@ -14,7 +14,7 @@ export default defineEventHandler(async (event) => {
             where: (usersToMoodsRelations, { eq }) => eq(usersToMoodsRelations.userId, user.user.id),
         });
 
-        const moods: string[] = [];
+        const moods: Moods[] = [];
 
         for (const relation of relationMoods) {
             const mood = await useDrizzle().query.moods.findFirst({
@@ -22,7 +22,7 @@ export default defineEventHandler(async (event) => {
             });
 
             if (mood) {
-                moods.push(mood.name);
+                moods.push(mood);
             }
         }
 

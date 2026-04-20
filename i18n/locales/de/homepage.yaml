@@ -5,3 +5,5 @@ homepage:
         noQuoteSelected: "Klicke auf den Button um deinen heutigen Spruch zu generieren."
     button:
         generate: "Generiere einen Spruch"
+    errors:
+        quoteFetchFailed: "Fehler beim Laden des Spruchs. Bitte versuche es erneut oder kontaktiere den Entwickler."
