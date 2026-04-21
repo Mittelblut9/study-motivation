@@ -21,7 +21,9 @@ admin:
       fetchFailed: "Fehler beim Laden der Sprüche. Bitte versuche es erneut."
       saveFailed: "Fehler beim Speichern der Sprüche. Bitte versuche es erneut."
       validationFailed: "Ungültige Eingabe. Bitte überprüfe deine Eingabe und versuche es erneut."
-  moods: 
+  moods:
+    untitledMood:
+      label: "[... Ohne Titel]"
     input: 
       label: "Beschreibung der Stimmung"
       placeholder: "Deine neue Stimmung"
@@ -31,6 +33,9 @@ admin:
     addButton:
       label: "Neue Stimmung hinzufügen"
       aria-label: "Füge eine neue Stimmung hinzu"
+    removeButton:
+      label: "Entfernen"
+      aria-label: "Entferne diese Stimmung"
     saveButton:
       label: "Stimmung speichern"
       aria-label: "Speichere alle Änderungen an der Stimmung"

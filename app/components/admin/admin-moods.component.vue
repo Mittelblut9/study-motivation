@@ -11,7 +11,7 @@
     >
         <UAccordion
             :items="state.moods.map((mood, i) => ({
-                label: mood.name,
+                label: mood.name || useT('admin.moods.untitledMood.label'),
                 value: String(i),
             }))"
         >
@@ -20,24 +20,36 @@
                     :label="useT('admin.moods.input.label')"
                     name="name"
                 >
-                    <UInput
-                        v-model="state.moods[Number(item.value)].name"
-                        color="neutral"
-                        variant="outline"
-                        :ui="{
-                            base: 'w-full md:w-97',
-                        }"
-                        :placeholder="useT('admin.moods.input.placeholder')"
-                    />
-                    <USeparator
-                        class="my-4"
-                    />
-                    <UFormField :label="useT('admin.quotes.header.label')">
-                        <slot
-                            name="quotes"
-                            :mood="state.moods[Number(item.value)]"
+                    <div class="flex flex-col justify-center">
+                        <UInput
+                            v-model="state.moods[Number(item.value)].name"
+                            color="neutral"
+                            variant="outline"
+                            :ui="{
+                                base: 'w-full md:w-97',
+                            }"
+                            :placeholder="useT('admin.moods.input.placeholder')"
                         />
-                    </UFormField>
+                        <USeparator
+                            class="my-4"
+                        />
+                        <UFormField :label="useT('admin.quotes.header.label')">
+                            <slot
+                                name="quotes"
+                                :mood="state.moods[Number(item.value)]"
+                            />
+                        </UFormField>
+
+                        <div class="flex justify-center">
+                            <UButton
+                                color="error"
+                                variant="link"
+                                :label="useT('admin.moods.removeButton.label')"
+                                :aria-label="useT('admin.moods.removeButton.aria-label')"
+                                @click="removeMood(Number(item.value))"
+                            />
+                        </div>
+                    </div>
                 </UFormField>
             </template>
         </UAccordion>
@@ -162,5 +174,9 @@ function addMood() {
         name: '',
         id: Date.now(),
     });
+}
+
+function removeMood(index: number) {
+    state.moods.splice(index, 1);
 }
 </script>
