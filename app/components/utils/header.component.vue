@@ -1,6 +1,7 @@
 <template>
     <UHeader :items="links">
         <UNavigationMenu
+            id="navMenu"
             :items="links"
             color="neutral"
             highlight
@@ -52,11 +53,22 @@
 <script lang="ts" setup>
 import { ERoutes } from '~/utils/enum/Routes.enum';
 
+const icons = [
+    'material-symbols:mood-bad-outline',
+    'material-symbols:mood-outline-rounded',
+    'tabler:mood-angry',
+    'tabler:mood-annoyed',
+    'tabler:mood-crazy-happy',
+];
+
+const randomIndex = Math.floor(Math.random() * icons.length);
+const currentIcon = ref<string>(icons[randomIndex]);
+
 const links = [
     {
         label: useT('header.links.admin.label'),
-        icon: useT('header.links.admin.icon'),
-        to: useT('header.links.admin.to')
+        icon: currentIcon.value,
+        to: ERoutes.ADMIN
     },
 ];
 </script>

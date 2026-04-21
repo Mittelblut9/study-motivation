@@ -2,8 +2,6 @@ header:
     links:
         admin:
             label: "Admin"
-            icon: "i-heroicons-rocket-launch"
-            to: "/admin"
     authState:
         loggedInAs: "Eingeloggt als {name}"
         logout: "// <u>Abmelden</u>"
