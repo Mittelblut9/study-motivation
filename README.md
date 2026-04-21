@@ -1,21 +1,19 @@
-# Nuxt 3 Template
+# Study Motivation
 
-## First Steps
+This was developed for my girlfriend to help her stay motivated with her law studies.
 
-- Use this template to create a new Nuxt 3 project.
+But everyone is free to use it and contribute to it.
 
-- Clone your fresh created repository to your local machine.
+## Contributing
 
-- Install dependencies
+Update .env file with a random string for the `NUXT_PASSWORD` variable.
+
+```
+NUXT_SESSION_PASSWORD=your-random-string
+```
 
 ```bash
 pnpm install
-```
-
-- Run the installation script
-
-```bash
-pnpm run scripts:install
 ```
 
 - Start the development server
