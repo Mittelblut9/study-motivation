@@ -25,6 +25,8 @@ export default defineEventHandler(async (event) => {
     const newMoods = body.moods;
     const userId = user.user.id;
     try {
+        const returnMoods = [];
+
         useDrizzle().transaction((tx) => {
             const relations = tx.select().from(tables.usersToMoodsRelations).where(eq(tables.usersToMoodsRelations.userId, userId)).all();
             const moodsInDatabase = tx.select().from(tables.moods).where(inArray(tables.moods.id, relations.map(r => r.moodId))).all();
@@ -42,6 +44,11 @@ export default defineEventHandler(async (event) => {
                     userId,
                     moodId: newMood.id,
                 }).run();
+                returnMoods.push({
+                    oldId: mood.id,
+                    id: newMood.id,
+                    name: newMood.name,
+                });
             }
 
             for (const mood of moodsToRemove) {
@@ -57,7 +64,7 @@ export default defineEventHandler(async (event) => {
             }
         });
 
-        return { success: true };
+        return returnMoods;
     } catch (error) {
         console.error('Error saving moods:', error);
         captureException(error);

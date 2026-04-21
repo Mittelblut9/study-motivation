@@ -10,6 +10,7 @@
         class="grid justify-center mt-30 gap-4"
     >
         <UAccordion
+            :unmount-on-hide="false"
             :items="state.moods.map((mood, i) => ({
                 label: mood.name || useT('admin.moods.untitledMood.label'),
                 value: String(i),
@@ -108,7 +109,6 @@ const { saveLoading } = defineProps<{
 const {
     data: moods,
     status,
-    refresh,
     error,
 } = await useFetch<(Moods)[]>('/api/moods', {
     dedupe: 'cancel',
@@ -140,8 +140,11 @@ function saveMoods() {
             method: 'POST',
             body: state,
         })
-            .then(async () => {
-                await refresh();
+            .then(async (data) => {
+                state.moods = state.moods.map((mood) => {
+                    const updatedMood = data.find((m: Moods & { oldId: number }) => m.oldId === mood.id);
+                    return updatedMood ? updatedMood : mood;
+                });
                 useToast().add({
                     description: useT('admin.moods.success.saved'),
                     color: 'success',
