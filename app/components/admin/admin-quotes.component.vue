@@ -15,7 +15,8 @@
                 color="neutral"
                 variant="outline"
                 :ui="{
-                    base: ':w-97 ms-3',
+                    root: 'flex items-start gap-2',
+                    base: 'w-full ms-3',
                 }"
                 :placeholder="useT('admin.quotes.textarea.placeholder')"
                 autoresize

@@ -12,19 +12,42 @@
                 class="text-center max-w-2xl text-2xl"
                 v-html="useT('homepage.subheader.noQuoteSelected')"
             />
-            <blockquote
-                v-else
-                class="text-center max-w-2xl text-2xl italic"
-            >
-                {{ quote }}
-            </blockquote>
+
             <div class="flex justify-center mt-20">
                 <RollQuoteButtonAtom @quote-generated="quote = $event" />
             </div>
         </div>
+
+        <UModal
+            v-model:open="modalOpen"
+            fullscreen
+        >
+            <template #body>
+                <div class="min-h-full grid place-items-center">
+                    <blockquote
+                        class="text-center text-2xl italic"
+                    >
+                        {{ quote }}
+                    </blockquote>
+                </div>
+            </template>
+        </UModal>
     </div>
 </template>
 
 <script lang="ts" setup>
 const quote = ref<string | null>(null);
+const modalOpen = ref(false);
+
+watch(quote, (newQuote) => {
+    if (newQuote) {
+        modalOpen.value = true;
+    }
+});
+
+watch(modalOpen, (isOpen) => {
+    if (!isOpen) {
+        quote.value = null;
+    }
+});
 </script>

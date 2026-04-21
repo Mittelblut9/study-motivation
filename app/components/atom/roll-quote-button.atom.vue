@@ -20,7 +20,7 @@
         />
         <p
             v-if="customError"
-            class="text-red-500"
+            class="text-red-500 w-full"
             v-html="customError"
         />
     </div>
