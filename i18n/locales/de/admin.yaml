@@ -26,6 +26,7 @@ admin:
       label: "[... Ohne Titel]"
     input: 
       label: "Beschreibung der Stimmung"
+      hint: "Um die Stimmung zu speichern, drücke ganz unten auf den Speichern Button."
       placeholder: "Deine neue Stimmung"
       aria-label: "Gib hier deine neue Stimmung ein"
     success:

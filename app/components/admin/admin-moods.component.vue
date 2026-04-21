@@ -17,11 +17,12 @@
             }))"
         >
             <template #content="{ item }">
-                <UFormField
-                    :label="useT('admin.moods.input.label')"
-                    name="name"
-                >
-                    <div class="flex flex-col justify-center">
+                <div class="flex flex-col justify-center">
+                    <UFormField
+                        :label="useT('admin.moods.input.label')"
+                        :help="useT('admin.moods.input.hint')"
+                        name="name"
+                    >
                         <UInput
                             v-model="state.moods[Number(item.value)].name"
                             color="neutral"
@@ -31,27 +32,27 @@
                             }"
                             :placeholder="useT('admin.moods.input.placeholder')"
                         />
-                        <USeparator
-                            class="my-4"
+                    </UFormField>
+                    <USeparator
+                        class="my-4"
+                    />
+                    <UFormField :label="useT('admin.quotes.header.label')">
+                        <slot
+                            name="quotes"
+                            :mood="state.moods[Number(item.value)]"
                         />
-                        <UFormField :label="useT('admin.quotes.header.label')">
-                            <slot
-                                name="quotes"
-                                :mood="state.moods[Number(item.value)]"
-                            />
-                        </UFormField>
+                    </UFormField>
 
-                        <div class="flex justify-center">
-                            <UButton
-                                color="error"
-                                variant="link"
-                                :label="useT('admin.moods.removeButton.label')"
-                                :aria-label="useT('admin.moods.removeButton.aria-label')"
-                                @click="removeMood(Number(item.value))"
-                            />
-                        </div>
+                    <div class="flex justify-center">
+                        <UButton
+                            color="error"
+                            variant="link"
+                            :label="useT('admin.moods.removeButton.label')"
+                            :aria-label="useT('admin.moods.removeButton.aria-label')"
+                            @click="removeMood(Number(item.value))"
+                        />
                     </div>
-                </UFormField>
+                </div>
             </template>
         </UAccordion>
 
@@ -59,6 +60,7 @@
             color="neutral"
             :label="useT('admin.moods.addButton.label')"
             :aria-label="useT('admin.moods.addButton.aria-label')"
+            :loading="saveLoading"
             @click="addMood"
         />
 
@@ -174,9 +176,11 @@ function saveMoods() {
 
 function addMood() {
     state.moods.push({
-        name: '',
+        name: useT('admin.moods.untitledMood.label'),
         id: Date.now(),
     });
+
+    saveMoods();
 }
 
 function removeMood(index: number) {
