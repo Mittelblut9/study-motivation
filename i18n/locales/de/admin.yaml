@@ -38,8 +38,8 @@ admin:
       label: "Entfernen"
       aria-label: "Entferne diese Stimmung"
     saveButton:
-      label: "Stimmung speichern"
-      aria-label: "Speichere alle Änderungen an der Stimmung"
+      label: "Stimmungen speichern"
+      aria-label: "Speichere alle Änderungen an den Stimmungen"
     errors: 
-      saveFailed: "Fehler beim Speichern der Stimmung. Bitte versuche es erneut."
+      saveFailed: "Fehler beim Speichern der Stimmungen. Bitte versuche es erneut."
       validationFailed: "Ungültige Eingabe. Bitte überprüfe deine Eingabe und versuche es erneut."
