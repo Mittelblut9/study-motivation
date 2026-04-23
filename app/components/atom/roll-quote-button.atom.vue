@@ -1,6 +1,6 @@
 <template>
     <div
-        v-if="!pageLoading"
+        v-if="!pageLoading && moods.length > 0"
         class="grid gap-3 min-w-lg max-w-xl mx-auto"
     >
         <UTabs
@@ -22,6 +22,21 @@
             v-if="customError"
             class="text-red-500 w-full"
             v-html="customError"
+        />
+    </div>
+    <div
+        v-else-if="moods.length === 0"
+        class="text-center"
+    >
+        <p
+            class="text-red-500 "
+            v-html="useT('homepage.emptyMoods.text')"
+        />
+        <ULink
+            :href="ERoutes.ADMIN"
+            color="neutral"
+            class="underline"
+            v-html="useT('homepage.emptyMoods.link.label')"
         />
     </div>
     <div v-else>
@@ -59,14 +74,12 @@ onMounted(() => {
         });
         return;
     }
+    pageLoading.value = false;
 
     if (!data.value || data.value.length === 0) {
-        console.error('Failed to load moods:', error.value);
-        customError.value = useT('homepage.errors.moodsLoadFailed');
         return;
     }
 
-    pageLoading.value = false;
     data.value.map((mood: Moods) => {
         moods.value.push({
             label: mood.name,

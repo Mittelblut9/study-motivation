@@ -5,6 +5,10 @@ homepage:
         noQuoteSelected: "Klicke auf den Button um deinen heutigen Spruch zu generieren."
     button:
         generate: "Generiere einen Spruch"
+    emptyMoods:
+        text: "Keine Stimmungen gefunden. Bitte füge vorher welche hinzu."
+        link:
+            label: "Hier klicken um welche hinzuzufügen."
     errors:
         moodsLoadFailed: "Fehler beim Laden der Stimmungen. Bitte versuche es erneut oder kontaktiere den Entwickler."
         quoteLoadFailed: "Fehler beim Laden des Spruchs. Bitte versuche es erneut oder kontaktiere den Entwickler."
