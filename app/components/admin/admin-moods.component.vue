@@ -94,7 +94,7 @@ const moodQuotesSchema = z.object({
             name: z.string().min(1, { message: 'Mood name is required' }),
             id: z.number(),
         })
-    ).min(1, { message: 'At least one mood is required' }),
+    ),
 });
 const state = reactive({
     moods: [] as Moods[],
