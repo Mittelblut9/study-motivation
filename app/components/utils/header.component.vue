@@ -68,7 +68,7 @@ const links = [
     {
         label: useT('header.links.admin.label'),
         icon: currentIcon.value,
-        to: ERoutes.ADMIN
+        to: ERoutes.LIBRARY
     },
 ];
 </script>

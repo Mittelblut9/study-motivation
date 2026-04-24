@@ -33,7 +33,7 @@
             v-html="useT('homepage.emptyMoods.text')"
         />
         <ULink
-            :href="ERoutes.ADMIN"
+            :href="ERoutes.LIBRARY"
             color="neutral"
             class="underline"
             v-html="useT('homepage.emptyMoods.link.label')"

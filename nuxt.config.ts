@@ -82,8 +82,11 @@ export default defineNuxtConfig({
             appMiddleware: ['auth'],
         },
         [ERoutes.ADMIN]: {
+            redirect: ERoutes.LIBRARY,
+        },
+        [ERoutes.LIBRARY]: {
             appMiddleware: ['auth'],
-        }
+        },
     },
 
     sourcemap: {

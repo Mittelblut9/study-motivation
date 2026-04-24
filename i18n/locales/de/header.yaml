@@ -1,7 +1,7 @@
 header:
     links:
         admin:
-            label: "Admin"
+            label: "Bibliothek"
     authState:
         loggedInAs: "Eingeloggt als {name}"
         logout: "// <u>Abmelden</u>"
